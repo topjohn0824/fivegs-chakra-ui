@@ -1,4 +1,5 @@
 import NextLink from 'next/link';
+import Image from 'next/image';
 import {
  Heading,
  Box,
@@ -7,7 +8,6 @@ import {
  Stack,
  Button,
  Badge,
- Image,
  useColorModeValue,
 } from '@chakra-ui/react';
 
@@ -31,8 +31,10 @@ export default function Card({
     textAlign={'center'}
    >
     <Image
-     src='https://bit.ly/sage-adebayo'
+     src='https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
      alt='Segun Adebayo'
+     width={300}
+     height={300}
      position='relative'
      rounded='lg'
     />
