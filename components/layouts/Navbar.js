@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import {
  Box,
  Flex,
@@ -11,6 +12,24 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import DarkModeSwitch from './DarkModeSwitch';
 
+const navLinks = [
+ {
+  title: 'Home',
+  path: '/',
+ },
+ {
+  title: 'Product',
+  path: '/product',
+ },
+ {
+  title: 'About Us',
+  path: '/about-us',
+ },
+ {
+  title: 'Contact Us',
+  path: '/contact-us',
+ },
+];
 export default function Navbar() {
  const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -26,20 +45,28 @@ export default function Navbar() {
       onClick={isOpen ? onClose : onOpen}
      />
      <HStack spacing={8} alignItems={'center'}>
-      <Box>FiveGiftShop</Box>
+      <Box>
+       <NextLink href='/'>
+        <a>FiveGiftShop</a>
+       </NextLink>
+      </Box>
       <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-       <Link
-        px={2}
-        py={1}
-        rounded={'md'}
-        _hover={{
-         textDecoration: 'none',
-         bg: useColorModeValue('gray.200', 'gray.700'),
-        }}
-        href={'#'}
-       >
-        hello
-       </Link>
+       {navLinks &&
+        navLinks.map((links, index) => (
+         <NextLink key={index} href={links.path}>
+          <Link
+           px={2}
+           py={1}
+           rounded={'md'}
+           _hover={{
+            textDecoration: 'none',
+            bg: useColorModeValue('gray.200', 'gray.700'),
+           }}
+          >
+           {links.title}
+          </Link>
+         </NextLink>
+        ))}
       </HStack>
      </HStack>
      <Flex alignItems={'center'}>
@@ -50,18 +77,22 @@ export default function Navbar() {
     {isOpen ? (
      <Box pb={4} display={{ md: 'none' }}>
       <Stack as={'nav'} spacing={4}>
-       <Link
-        px={2}
-        py={1}
-        rounded={'md'}
-        _hover={{
-         textDecoration: 'none',
-         bg: useColorModeValue('gray.200', 'gray.700'),
-        }}
-        href={'#'}
-       >
-        hello
-       </Link>
+       {navLinks &&
+        navLinks.map((links, index) => (
+         <NextLink key={index} href={links.path}>
+          <Link
+           px={2}
+           py={1}
+           rounded={'md'}
+           _hover={{
+            textDecoration: 'none',
+            bg: useColorModeValue('gray.200', 'gray.700'),
+           }}
+          >
+           {links.title}
+          </Link>
+         </NextLink>
+        ))}
       </Stack>
      </Box>
     ) : null}
