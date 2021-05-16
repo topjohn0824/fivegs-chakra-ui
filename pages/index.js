@@ -1,9 +1,15 @@
-import { Box } from '@chakra-ui/react';
+import Card from '../components/Ui/Card';
+import Grid from '../components/Ui/Grid';
 
 const Home = () => {
  return (
   <>
-   <Box p={4}>Main Content Here</Box>
+   <Grid
+    title='Featured Products'
+    description='up 20% off on selected item get your items now'
+   >
+    <Card />
+   </Grid>
   </>
  );
 };
