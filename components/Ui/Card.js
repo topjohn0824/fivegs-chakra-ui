@@ -1,26 +1,99 @@
-import { Box, Flex, Image, IconButton, Text } from '@chakra-ui/react';
-import { CopyIcon } from '@chakra-ui/icons';
+import NextLink from 'next/link';
+import {
+ Heading,
+ Box,
+ Center,
+ Text,
+ Stack,
+ Button,
+ Badge,
+ Image,
+ useColorModeValue,
+} from '@chakra-ui/react';
 
-function Card() {
+export default function Card({
+ title,
+ content,
+ tags,
+ productlink,
+ productpath,
+ productbutton,
+}) {
  return (
-  <>
-   <Box>
-    <Flex justifyContent='center' alignItems='center' flexDirection='column'>
-     <Box>
-      <Image height='100px' width='100px' />
-     </Box>
-    </Flex>
-    <Flex alignItems='flex-start' flexDirection='column'>
-     <Text>Text value</Text>
-     <Text>Text value</Text>
-    </Flex>
-    <Flex flexDirection='row' justifyContent='center' alignItems='center'>
-     <IconButton aria-label='icon' icon={<CopyIcon />} size='md' />
-     <IconButton aria-label='icon' icon={<CopyIcon />} size='md' />
-    </Flex>
+  <Center py={6}>
+   <Box
+    maxW={'320px'}
+    w={'full'}
+    bg={useColorModeValue('white', 'gray.900')}
+    boxShadow={'2xl'}
+    rounded={'lg'}
+    p={6}
+    textAlign={'center'}
+   >
+    <Image
+     src='https://bit.ly/sage-adebayo'
+     alt='Segun Adebayo'
+     position='relative'
+     rounded='lg'
+    />
+    <Heading fontSize={'2xl'} fontFamily={'body'}>
+     {title}
+    </Heading>
+    <Text
+     textAlign={'center'}
+     color={useColorModeValue('gray.700', 'gray.400')}
+     px={3}
+     isTruncated
+    >
+     {content}
+    </Text>
+
+    <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+     <Badge
+      px={2}
+      py={1}
+      bg={useColorModeValue('gray.50', 'gray.800')}
+      fontWeight={'400'}
+     >
+      {tags}
+     </Badge>
+    </Stack>
+
+    <Stack mt={8} direction={'row'} spacing={4}>
+     <NextLink href={productpath}>
+      <Button
+       flex={1}
+       fontSize={'sm'}
+       rounded={'full'}
+       _focus={{
+        bg: 'gray.200',
+       }}
+      >
+       See more...
+      </Button>
+     </NextLink>
+     <NextLink href={productlink}>
+      <Button
+       flex={1}
+       fontSize={'sm'}
+       rounded={'full'}
+       bg={'green.400'}
+       color={'white'}
+       boxShadow={
+        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+       }
+       _hover={{
+        bg: 'green.500',
+       }}
+       _focus={{
+        bg: 'green.500',
+       }}
+      >
+       Buy me!!
+      </Button>
+     </NextLink>
+    </Stack>
    </Box>
-  </>
+  </Center>
  );
 }
-
-export default Card;
